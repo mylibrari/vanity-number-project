@@ -1,0 +1,70 @@
+{
+  "Version": "2019-10-30",
+  "StartAction": "12345678-1234-1234-1234-123456789012",
+  "Actions": [
+    {
+      "Identifier": "12345678-1234-1234-1234-123456789012",
+      "Type": "MessageParticipant",
+      "Parameters": {
+        "Text": "Welcome to Vanity Numbers! Please wait while we convert your phone number into memorable vanity numbers."
+      },
+      "Transitions": {
+        "NextAction": "12345678-1234-1234-1234-123456789013"
+      }
+    },
+    {
+      "Identifier": "12345678-1234-1234-1234-123456789013",
+      "Type": "InvokeExternalResource",
+      "Parameters": {
+        "FunctionArn": "arn:aws:lambda:REGION:ACCOUNT_ID:function:vanity-numbers-converter",
+        "ResponseValidation": {
+          "ResponseType": "STRING_MAP"
+        }
+      },
+      "Transitions": {
+        "NextAction": "12345678-1234-1234-1234-123456789014",
+        "Errors": [
+          {
+            "ErrorType": "NoMatchingError",
+            "NextAction": "12345678-1234-1234-1234-123456789015"
+          }
+        ]
+      }
+    },
+    {
+      "Identifier": "12345678-1234-1234-1234-123456789014",
+      "Type": "MessageParticipant",
+      "Parameters": {
+        "Text": "$.External.speech"
+      },
+      "Transitions": {
+        "NextAction": "12345678-1234-1234-1234-123456789016"
+      }
+    },
+    {
+      "Identifier": "12345678-1234-1234-1234-123456789015",
+      "Type": "MessageParticipant",
+      "Parameters": {
+        "Text": "Sorry, we encountered an error converting your phone number. Please try calling again later."
+      },
+      "Transitions": {
+        "NextAction": "12345678-1234-1234-1234-123456789016"
+      }
+    },
+    {
+      "Identifier": "12345678-1234-1234-1234-123456789016",
+      "Type": "MessageParticipant",
+      "Parameters": {
+        "Text": "Thank you for calling! Have a great day. Goodbye!"
+      },
+      "Transitions": {
+        "NextAction": "12345678-1234-1234-1234-123456789017"
+      }
+    },
+    {
+      "Identifier": "12345678-1234-1234-1234-123456789017",
+      "Type": "DisconnectParticipant",
+      "Parameters": {}
+    }
+  ]
+}

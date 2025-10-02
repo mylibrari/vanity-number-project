@@ -1,0 +1,76 @@
+# Terraform specific files
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+terraform.tfstate.backup
+.terraform.lock.hcl
+override.tf
+override.tf.json
+*.terraform.lock.hcl
+
+
+# AWS credentials and sensitive data
+**/.aws/credentials
+**/aws_config.json
+**/accessKeys.csv
+**/*.pem
+**/*.key
+**/*.cer
+**/secrets.env
+**/.env
+**/.env.local
+**/.env.*.local
+
+# Python specific
+__pycache__/
+env/
+venv/
+VENV/
+env.bak/
+venv.bak/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+\#*#
+.\#*
+
+# Log files
+*.log
+logs/
+
+# Temporary files
+.temp/
+tmp/
+*.tmp
+
+
+
+# Project specific exclusions
+/docs/temp/
+/tests/__pycache__/
